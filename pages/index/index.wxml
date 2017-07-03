@@ -1,20 +1,93 @@
 <view class="container">
 
-<view class="section">
+<view class = 'search flex'>
+	<view class="section">
 	<input placeholder="请输入城市名称" type="text" bindinput="bindKeyInput" />
-</view>
-<view class="button-wrapper">
-    <button type="primary" bindtap="searchWeathes">确认</button>
+	</view>
+	<view class="button-wrapper">
+		<button bindtap="searchWeathes" hover-class="clickIt" class = 'transition'>确认</button>
+	</view>
 </view>
 <block wx:if="{{weathes}}">
-<view>
-	<text>城市：{{weathes.city}}</text>
+<view class = 'weathesInfo transition'  animation = '{{ animation }}'>
+	<view class = 'location'>
+		<text>{{ weathes.provinceName }}{{weathes.city}}市</text>
+	</view>
+	<view class = 'temp flex'>
+		<text class = 'weath'>{{weathes.realtime.weather}}</text>
+		<text>{{weathes.realtime.temp}}°/ {{ 	weathes.realtime.sendibleTemp }}°</text>
+	</view>
+	<view class = 'otherInfo flex'>
+		<view class = 'aqi flex'>
+			<text class = 'fz_s'>空气质量</text>
+			<text class = 'fz_l fw'>{{ weathes.pm25.aqi }} {{ weathes.pm25.quality }}</text>
+		</view>
+		<view class = 'humidity flex'>
+			<text class = 'fz_s'>相对湿度</text>
+			<text class = 'fz_l fw'>{{ weathes.realtime.sD }}%</text>
+		</view>
+		<view class = 'wind flex'>
+			<text class = 'direction fz_s'>{{ weathes.realtime.wD }}</text>
+			<text class = 'level fz_l fw'>{{weathes.realtime.wS}}</text>
+		</view>
+	</view>
 </view>
-<view>
-	<text>天气：{{weathes.weather}}</text>
+<view class = 'weathesInfo transition' animation = '{{ animation }}'>
+	<view class = 'title'>
+		<text>未来一周天气情况:</text>
+	</view>
+	<view wx:for = '{{ weathes.weathers }}' class = 'flex weatherDetailsInfo' wx:key = 'index'>
+		<text class = 'fz_s fw'>{{ item.week }}</text>
+		<view>
+			<!--<image src="{{ icon[item.img] }}"></image>-->
+			<text class = 'fz_s fw'>{{ item.weather }}</text>
+		</view>
+		<text class = 'fz_s fw'>{{ item.temp_night_c }}°/ {{ item.temp_day_c }}°</text>
+	</view>
 </view>
-<view>
-	<text>气温：{{weathes.temp1}} ~ {{weathes.temp2}}</text>
+<view class = 'weathesInfo transition' animation = '{{ animation }}'>
+	<view class = 'title'>
+		<text>空气质量详情:</text>
+	</view>
+	<view class = 'quality'>
+		<text>{{ weathes.pm25.quality }}/{{ weathes.pm25.aqi }}</text>
+	</view>
+	<view class = 'advice'>
+		<text>建议 : {{ weathes.pm25.quality == '优' ? '空气很好,快呼吸新鲜空气,拥抱大自然吧' : '空气质量较差,请注意身体' }}</text>
+	</view>
+	<view class = 's_title flex detailed'>
+		<text>主要的污染物:</text>
+		<text class = 'unit'>单位: μg/m²</text>
+	</view>
+	<view class = 'flex someVal'>
+		<view class = 'left_box flex'>
+			<view class = 'flex single'>
+				<text>PM10指数 : </text><text>{{ weathes.pm25.pm10 }}</text>
+			</view>
+			<view class = 'flex single'>
+				<text>SO₂指数 : </text>
+				<text>{{ weathes.pm25.so2 }}</text>
+			</view>
+			<view class = 'flex single'>
+				<text>PM2.5指数 : </text>
+				<text>{{ weathes.pm25.pm25 }}</text>
+			</view>
+		</view>
+		<view class = 'right_box flex'>
+			<view class = 'flex single'>
+				<text>NO₂指数 : </text>
+				<text>{{ weathes.pm25.no2 }}</text>
+			</view>
+			<view class = 'flex single'>
+				<text>O₃指数 : </text>	
+				<text>{{ weathes.pm25.o3 }}</text>
+			</view>
+			<view class = 'flex single'>
+				<text>CO指数 : </text>
+				<text>{{ weathes.pm25.co * 100 }}</text>
+			</view>	
+		</view>
+	</view>
 </view>
 </block>
 </view>

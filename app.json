@@ -4,9 +4,9 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#28282c",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "天气demo",
-    "navigationBarTextStyle":"white",
-    "backgroundColor":"#ffffff"
+    "navigationBarTextStyle":"black",
+    "backgroundColor":"#f2f2f4"
   }
 }

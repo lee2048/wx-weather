@@ -1,10 +1,41 @@
 /**app.wxss**/
+page{
+  font-family:  "Microsoft YaHei";
+  background-color: #f2f2f4;
+}
 .container {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  /*padding: 200rpx 0;*/
   box-sizing: border-box;
+  padding: 10px;
+  color: #5b5b5b;
 } 
+.flex{
+   display: flex;
+   display: -webkit-flex;
+}
+.transition{
+  transition: .12s ease;
+  -webkit-transition: .12s ease;
+}
+.fz_l{
+  font-size: .9rem;
+}
+.fw{
+  font-weight: 500;
+}
+.fz_s{
+  font-size: .7rem;
+}
+ .title{
+  font-size: .86rem;
+  margin-bottom: 10px;
+}
+.s_title{
+  font-size: .8rem;
+  margin: 10px 0;
+}
